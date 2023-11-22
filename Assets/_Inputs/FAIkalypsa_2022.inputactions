@@ -1,0 +1,34 @@
+{
+    "name": "FAIkalypsa_2022",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "d2670565-112d-4d0d-9f5a-68873351061b",
+            "actions": [
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "ba7b6eb7-c02c-492d-a601-33d9e956e8c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8b678698-40fe-49ed-bd0b-46e530de3595",
+                    "path": "<Keyboard>/#(C)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
