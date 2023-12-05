@@ -21,12 +21,15 @@ public class BulletCCScript : MonoBehaviour {
     [Tooltip("Put Weapon layer and Player layer to ignore bullet raycast.")]
 	public LayerMask ignoreLayer;
 
-	/*
+    [SerializeField]
+    private float damage = 1;
+
+    /*
 	* Uppon bullet creation with this script attatched,
 	* bullet creates a raycast which searches for corresponding tags.
 	* If raycast finds somethig it will create a decal of corresponding tag.
 	*/
-	void Update () {
+    void Update () {
 
 		if(Physics.Raycast(transform.position, transform.forward,out hit, maxDistance, ~ignoreLayer)){
 			if(decalHitWall){
@@ -37,7 +40,8 @@ public class BulletCCScript : MonoBehaviour {
 				if(hit.collider.gameObject.layer == LayerMask.NameToLayer(charactersLayerName))
                 {
 					Instantiate(bloodEffect, hit.point, Quaternion.LookRotation(hit.normal));
-					Destroy(gameObject);
+                    hit.collider.gameObject.GetComponent<HealthScript>()?.DecreaseHealth(damage);
+                    Destroy(gameObject);
 				}
 			}		
 			Destroy(gameObject);
