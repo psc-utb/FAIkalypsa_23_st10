@@ -1,4 +1,5 @@
 using Assets.Pool_Spawner_Pro_Upgrade;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class ZombieAI : MonoBehaviour, IReinitializable
+public class ZombieAI : MonoBehaviour, IReinitializable, IDespawnable
 {
     [SerializeField]
     private GameObject Player;
@@ -45,6 +46,7 @@ public class ZombieAI : MonoBehaviour, IReinitializable
 
     public UnityEvent<GameObject> ZombieSpawned;
 
+    public event Action<GameObject, bool> Despawn;
 
     void Awake()
     {
@@ -152,6 +154,8 @@ public class ZombieAI : MonoBehaviour, IReinitializable
                 capsule.center = new Vector3(0, 2, 0);
 
                 ZombieDied?.Invoke(this.gameObject, true);
+
+                Despawn?.Invoke(this.gameObject, true);
             }
         }
     }
